@@ -1,3 +1,4 @@
+import 'package:echo/source/styles.dart';
 import 'package:flutter/material.dart';
 import '../source/components.dart';
 
@@ -12,7 +13,7 @@ class SplashScreen1 extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
-              // Image
+              // --- Image ---
               Image(
                 image: AssetImage("assets/images/image_splash_1.png"),
                 height: 500,
@@ -20,18 +21,18 @@ class SplashScreen1 extends StatelessWidget {
 
               SizedBox(height: 40),
 
-              // Text Group
-              Text("Welcome to Echo!",
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  )),
-              Text("Your shopping journey begins here."),
+              // --- Text ---
+              Text(
+                "Welcome to Echo!",
+                style: AppTypography.heading1Bold,
+              ),
+              Text(
+                "Your shopping journey begins here.",
+              ),
 
               SizedBox(height: 40),
 
-              // Button Group
+              // --- Button ---
               Column(
                 children: [
                   PrimaryButton(text: "Continue"),
