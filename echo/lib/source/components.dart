@@ -1,4 +1,6 @@
+import 'package:echo/source/styles.dart';
 import 'package:flutter/material.dart';
+import '../source/components.dart';
 
 // Primary Button
 class PrimaryButton extends StatelessWidget {
@@ -32,7 +34,7 @@ class PrimaryButton extends StatelessWidget {
   // Button Style
   ButtonStyle _buttonStyle() {
     return ElevatedButton.styleFrom(
-      backgroundColor: Colors.blue,
+      backgroundColor: AppColors.buttonPrimary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0), // Set border radius
       ),
@@ -46,7 +48,7 @@ class PrimaryButton extends StatelessWidget {
   // Text Style
   TextStyle _textStyle() {
     return const TextStyle(
-      color: Colors.white,
+      color: AppColors.white,
       fontFamily: 'DMSerifText',
       fontSize: 16,
       fontWeight: FontWeight.bold,
@@ -84,7 +86,7 @@ class SecondaryButton extends StatelessWidget {
           child: Text(
             text,
             style: const TextStyle(
-              color: Colors.blue,
+              color: Colors.black,
               fontSize: 16, // Set font size
               fontWeight: FontWeight.bold,
             ),

@@ -16,17 +16,16 @@ class AppColors {
   static const Color secondaryBackground = white;
 
   // --- Text Colors ---
-  static const Color primaryText = gray700;
+  static const Color primaryText = black;
   static const Color secondaryText = gray500;
 
   // --- Button Colors ---
-  static const Color buttonPrimary = green;
+  static const Color buttonPrimary = black;
   static const Color buttonDanger = red;
 }
 
 class AppTypography {
   static const String fontFamily = 'Poppins';
-
 
   // --- Heading 1 ---
   static const TextStyle heading1Bold = TextStyle(
@@ -51,7 +50,6 @@ class AppTypography {
     fontSize: 32,
     fontWeight: FontWeight.w400,
   );
-
 
   // --- Heading 2 ---
   static const TextStyle heading2Bold = TextStyle(
@@ -78,7 +76,6 @@ class AppTypography {
     fontWeight: FontWeight.w400,
   );
 
-
   // --- Heading 3 ---
   static const TextStyle heading3Bold = TextStyle(
     fontFamily: fontFamily,
@@ -103,7 +100,6 @@ class AppTypography {
     fontSize: 20,
     fontWeight: FontWeight.w400,
   );
-
 
   // --- Body Large ---
   static const TextStyle bodyLargeBold = TextStyle(
@@ -130,7 +126,6 @@ class AppTypography {
     fontWeight: FontWeight.w400,
   );
 
-
   // --- Body ---
   static const TextStyle bodyBold = TextStyle(
     fontFamily: fontFamily,
@@ -155,7 +150,6 @@ class AppTypography {
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
-
 
   // --- Caption ---
   static const TextStyle captionBold = TextStyle(

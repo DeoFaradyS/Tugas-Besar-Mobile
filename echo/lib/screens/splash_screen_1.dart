@@ -28,6 +28,7 @@ class SplashScreen1 extends StatelessWidget {
               ),
               Text(
                 "Your shopping journey begins here.",
+                style: AppTypography.bodyRegular,
               ),
 
               SizedBox(height: 40),
