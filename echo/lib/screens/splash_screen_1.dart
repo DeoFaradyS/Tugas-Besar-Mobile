@@ -7,44 +7,57 @@ class SplashScreen1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
-              // --- Image ---
-              Image(
-                image: AssetImage("assets/images/image_splash_1.png"),
-                height: 500,
-              ),
-
-              SizedBox(height: 40),
-
-              // --- Text ---
-              Text(
-                "Welcome to Echo!",
-                style: AppTypography.heading1Bold,
-              ),
-              Text(
-                "Your shopping journey begins here.",
-                style: AppTypography.bodyRegular,
-              ),
-
-              SizedBox(height: 40),
-
-              // --- Button ---
-              Column(
-                children: [
-                  PrimaryButton(text: "Continue"),
-                  SizedBox(height: 8),
-                  SecondaryButton(text: "Skip the Intro"),
-                ],
-              ),
+              _buildSplashImage(),
+              const SizedBox(height: 40),
+              _buildWelcomeText(),
+              const SizedBox(height: 40),
+              _buildActionButtons(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  // --- Widget untuk menampilkan gambar splash ---
+  Widget _buildSplashImage() {
+    return const Image(
+      image: AssetImage("assets/images/image_splash_1.png"),
+      height: 500,
+    );
+  }
+
+  // --- Widget untuk menampilkan teks welcome ---
+  Widget _buildWelcomeText() {
+    return const Column(
+      children: [
+        Text(
+          "Welcome to Echo!",
+          style: AppTypography.heading1Bold,
+        ),
+        SizedBox(height: 8),
+        Text(
+          "Your shopping journey begins here.",
+          style: AppTypography.bodyRegular,
+        ),
+      ],
+    );
+  }
+
+  // --- Widget untuk menampilkan tombol aksi ---
+  Widget _buildActionButtons() {
+    return const Column(
+      children: [
+        PrimaryButton(text: "Continue"),
+        SizedBox(height: 8),
+        SecondaryButton(text: "Skip the Intro"),
+      ],
     );
   }
 }
