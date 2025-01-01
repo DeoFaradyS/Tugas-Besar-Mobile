@@ -1,9 +1,9 @@
 import 'package:echo/source/styles.dart';
 import 'package:flutter/material.dart';
-import '../source/components.dart';
+import 'package:echo/source/components.dart';
 
-class SplashScreen1 extends StatelessWidget {
-  const SplashScreen1({super.key});
+class SplashScreen3 extends StatelessWidget {
+  const SplashScreen3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,32 +25,32 @@ class SplashScreen1 extends StatelessWidget {
     );
   }
 
-  // --- Widget untuk menampilkan gambar splash ---
+  // --- Image ---
   Widget _buildSplashImage() {
     return const Image(
-      image: AssetImage("assets/images/image_splash_1.png"),
+      image: AssetImage("assets/images/image_splash_3.png"),
       height: 500,
     );
   }
 
-  // --- Widget untuk menampilkan teks welcome ---
+  // --- Text ---
   Widget _buildWelcomeText() {
     return const Column(
       children: [
         Text(
-          "Welcome to Echo!",
+          "Let’s Start Shopping!",
           style: AppTypography.heading1Bold,
         ),
-        SizedBox(height: 8),
+        SizedBox(height: 4),
         Text(
-          "Your shopping journey begins here.",
+          "Amazing deals are waiting for you.",
           style: AppTypography.bodyRegular,
         ),
       ],
     );
   }
 
-  // --- Widget untuk menampilkan tombol aksi ---
+  // --- Action Button ---
   Widget _buildActionButtons() {
     return const Column(
       children: [
