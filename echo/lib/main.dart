@@ -1,4 +1,7 @@
 import 'package:echo/splash_screen/splash_screen_0.dart';
+import 'package:echo/splash_screen/splash_screen_1.dart';
+import 'package:echo/splash_screen/splash_screen_2.dart';
+import 'package:echo/splash_screen/splash_screen_3.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,9 +14,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SplashScreen(),
+    return MaterialApp(
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
+
+      // --- Routing ---
+      initialRoute: '/',
+      routes: {
+        '/splash_screen_1': (context) => const SplashScreen1(),
+        '/splash_screen_2': (context) => const SplashScreen2(),
+        '/splash_screen_3': (context) => const SplashScreen3(),
+      },
     );
   }
 }

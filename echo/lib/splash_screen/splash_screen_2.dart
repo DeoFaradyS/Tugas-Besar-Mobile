@@ -17,7 +17,7 @@ class SplashScreen2 extends StatelessWidget {
               const SizedBox(height: 40),
               _buildWelcomeText(),
               const SizedBox(height: 40),
-              _buildActionButtons(),
+              _buildActionButtons(context),
             ],
           ),
         ),
@@ -38,7 +38,7 @@ class SplashScreen2 extends StatelessWidget {
     return const Column(
       children: [
         Text(
-          "Explore Top Products!",
+          "Explore Top Product",
           style: AppTypography.heading1Bold,
         ),
         SizedBox(height: 4),
@@ -51,12 +51,17 @@ class SplashScreen2 extends StatelessWidget {
   }
 
   // --- Action Button ---
-  Widget _buildActionButtons() {
-    return const Column(
+  Widget _buildActionButtons(BuildContext context) {
+    return Column(
       children: [
-        PrimaryButton(text: "Continue"),
-        SizedBox(height: 8),
-        SecondaryButton(text: "Skip the Intro"),
+        PrimaryButton(
+          text: "Continue",
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/splash_screen_3');
+          },
+        ),
+        const SizedBox(height: 8),
+        const SecondaryButton(text: "Skip the Intro"),
       ],
     );
   }

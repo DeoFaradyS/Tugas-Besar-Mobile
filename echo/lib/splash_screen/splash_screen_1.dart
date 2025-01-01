@@ -17,7 +17,7 @@ class SplashScreen1 extends StatelessWidget {
               const SizedBox(height: 40),
               _buildWelcomeText(),
               const SizedBox(height: 40),
-              _buildActionButtons(),
+              _buildActionButtons(context), // Pass context here
             ],
           ),
         ),
@@ -51,12 +51,22 @@ class SplashScreen1 extends StatelessWidget {
   }
 
   // --- Action Button ---
-  Widget _buildActionButtons() {
-    return const Column(
+  Widget _buildActionButtons(BuildContext context) {
+    return Column(
       children: [
-        PrimaryButton(text: "Continue"),
-        SizedBox(height: 8),
-        SecondaryButton(text: "Skip the Intro"),
+        PrimaryButton(
+          text: "Continue",
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/splash_screen_2');
+          },
+        ),
+        const SizedBox(height: 8),
+        SecondaryButton(
+          text: "Skip the Intro",
+          onPressed: () {
+            // Tambahkan logika untuk tombol Skip jika diperlukan
+          },
+        ),
       ],
     );
   }
