@@ -1,4 +1,5 @@
 import 'package:echo/pages/login_page.dart';
+import 'package:echo/pages/register.dart';
 import 'package:echo/splash_screen/splash_screen_0.dart';
 import 'package:echo/splash_screen/splash_screen_1.dart';
 import 'package:echo/splash_screen/splash_screen_2.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const LoginPage(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
 
       // --- Routing ---
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
         '/splash_screen_1': (context) => const SplashScreen1(),
         '/splash_screen_2': (context) => const SplashScreen2(),
         '/splash_screen_3': (context) => const SplashScreen3(),
+        '/login': (context) => const LoginPage(),
+        '/register': (context) => const RegisterPage(),
       },
     );
   }
