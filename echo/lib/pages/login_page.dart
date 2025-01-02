@@ -11,21 +11,24 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-          child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start, // Semua elemen rata kiri
-            children: [
-              _buildLogo(),
-              const SizedBox(height: 40),
-              _buildContentText(),
-              const SizedBox(height: 32),
-              _buildForm(),
-              const SizedBox(height: 32),
-              _buildActionButtons(context),
-            ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+            child: Column(
+              crossAxisAlignment:
+                  CrossAxisAlignment.start, // Semua elemen rata kiri
+              children: [
+                _buildLogo(),
+                const SizedBox(height: 40),
+                _buildContentText(),
+                const SizedBox(height: 32),
+                _buildForm(),
+                const SizedBox(height: 32),
+                _buildActionButtons(context),
+              ],
+            ),
           ),
         ),
       ),
