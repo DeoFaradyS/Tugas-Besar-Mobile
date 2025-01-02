@@ -1,8 +1,7 @@
 import 'package:echo/source/styles.dart';
 import 'package:flutter/material.dart';
 
-
-// Primary Button
+// --- Primary Button ---
 class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -17,15 +16,13 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: SizedBox(
-        height: 48,
-        child: ElevatedButton(
-          style: _buttonStyle(),
-          onPressed: onPressed ?? () {},
-          child: Text(
-            text,
-            style: _textStyle(),
-          ),
+      height: 48,
+      child: ElevatedButton(
+        style: _buttonStyle(),
+        onPressed: onPressed ?? () {},
+        child: Text(
+          text,
+          style: _textStyle(),
         ),
       ),
     );
@@ -36,26 +33,24 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton.styleFrom(
       backgroundColor: AppColors.buttonPrimary,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0), // Set border radius
+        borderRadius: BorderRadius.circular(8.0),
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
         vertical: 0,
-      ), // Set padding
+      ),
     );
   }
 
   // Text Style
   TextStyle _textStyle() {
-    return const TextStyle(
-      color: AppColors.white,
-      fontFamily: 'DMSerifText',
-      fontSize: 16,
-      fontWeight: FontWeight.bold,
+    return AppTypography.bodyLargeSemibold.copyWith(
+      color: AppColors.primaryTextLight,
     );
   }
 }
 
+// --- Secondary Button ---
 class SecondaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -93,6 +88,60 @@ class SecondaryButton extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+// --- Tertiary Button ---
+class TertiaryButton extends StatelessWidget {
+  final String text;
+  final VoidCallback? onPressed;
+
+  const TertiaryButton({
+    super.key,
+    required this.text,
+    this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        foregroundColor: Colors.grey,
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 16, // Set font size
+          fontWeight: FontWeight.bold, // Set font weight
+        ),
+      ),
+    );
+  }
+}
+
+// --- Text Field Form ---
+class CustomTextFormField extends StatelessWidget {
+  final String hintText;
+  final bool obscureText;
+  final TextInputType keyboardType;
+
+  const CustomTextFormField({
+    super.key,
+    required this.hintText,
+    this.obscureText = false,
+    this.keyboardType = TextInputType.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: hintText,
+      ),
+      obscureText: obscureText,
+      keyboardType: keyboardType,
     );
   }
 }
