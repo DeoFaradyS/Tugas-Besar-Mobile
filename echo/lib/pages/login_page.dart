@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 32),
               _buildForm(),
               const SizedBox(height: 32),
-              _buildActionButtons(),
+              _buildActionButtons(context),
             ],
           ),
         ),
@@ -101,25 +101,30 @@ class LoginPage extends StatelessWidget {
   }
 
   // --- Action Buttons ---
-  Widget _buildActionButtons() {
+  Widget _buildActionButtons(BuildContext context) {
     return Column(
       children: [
         const PrimaryButton(text: "Login"),
         const SizedBox(height: 24),
-        _buildRegisterText(),
+        _buildRegisterText(context),
       ],
     );
   }
 
-  Widget _buildRegisterText() {
-    return const Row(
+  Widget _buildRegisterText(BuildContext context) {
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
+        const Text(
           "Don’t have a account?",
           style: AppTypography.bodyRegular,
         ),
-        TertiaryButton(text: "Register Here"),
+        TertiaryButton(
+          text: "Register Here",
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/register');
+          },
+        ),
       ],
     );
   }
