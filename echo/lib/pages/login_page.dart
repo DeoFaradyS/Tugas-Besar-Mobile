@@ -9,6 +9,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundLight,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
@@ -72,7 +73,7 @@ class LoginPage extends StatelessWidget {
             Text("Email", style: AppTypography.bodyRegular),
             SizedBox(height: 8),
             CustomTextFormField(
-              hintText: '*****',
+              hintText: '********',
               obscureText: true,
               keyboardType: TextInputType.emailAddress,
             ),
@@ -89,11 +90,17 @@ class LoginPage extends StatelessWidget {
         PrimaryButton(
           text: "Login",
         ),
-        SizedBox(height: 8),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("Don’t have a account?"),
-          TertiaryButton(text: "Register Here"),
-        ])
+        SizedBox(height: 24),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Don’t have a account?",
+              style: AppTypography.bodyRegular,
+            ),
+            TertiaryButton(text: "Register Here"),
+          ],
+        )
       ],
     );
   }
