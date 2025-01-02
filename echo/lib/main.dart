@@ -1,3 +1,4 @@
+import 'package:echo/pages/login_page.dart';
 import 'package:echo/splash_screen/splash_screen_0.dart';
 import 'package:echo/splash_screen/splash_screen_1.dart';
 import 'package:echo/splash_screen/splash_screen_2.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const SplashScreen(),
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
 
       // --- Routing ---
