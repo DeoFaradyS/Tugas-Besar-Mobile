@@ -44,7 +44,7 @@ class PrimaryButton extends StatelessWidget {
 
   // Text Style
   TextStyle _textStyle() {
-    return AppTypography.bodyLargeSemibold.copyWith(
+    return AppTypography.bodySemibold.copyWith(
       color: AppColors.textLight,
     );
   }
@@ -92,7 +92,7 @@ class SecondaryButton extends StatelessWidget {
 
   // Text Style
   TextStyle _textStyle() {
-    return AppTypography.bodyLargeSemibold.copyWith(
+    return AppTypography.bodySemibold.copyWith(
       color: AppColors.textDark,
     );
   }
