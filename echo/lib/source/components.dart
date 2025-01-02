@@ -171,7 +171,7 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText,
       keyboardType: keyboardType,
       style: AppTypography.bodyRegular.copyWith(
-        color: AppColors.textGrayDark,
+        color: AppColors.textDark,
       ),
     );
   }
