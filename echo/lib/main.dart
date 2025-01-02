@@ -1,5 +1,5 @@
 import 'package:echo/pages/login_page.dart';
-import 'package:echo/pages/register.dart';
+import 'package:echo/pages/register_page.dart';
 import 'package:echo/splash_screen/splash_screen_0.dart';
 import 'package:echo/splash_screen/splash_screen_1.dart';
 import 'package:echo/splash_screen/splash_screen_2.dart';
