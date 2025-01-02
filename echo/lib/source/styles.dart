@@ -12,21 +12,24 @@ class AppColors {
   static const Color gray700 = Color(0xFF666666);
 
   // --- Background Colors ---
-  static const Color primaryBackground = gray100;
-  static const Color secondaryBackground = white;
+  static const Color backgroundLight = white;
+  static const Color backgroundDark = black;
+  static const Color backgroundColorGrayLight = gray100;
+  static const Color backgroundColorGrayMedium = gray500;
+  static const Color backgroundColorGrayDark = gray700;
 
   // --- Text Colors ---
-  static const Color primaryTextDark = black;
-  static const Color primaryTextLight = white;
-  static const Color secondaryText = gray500;
-  static const Color tertiaryText = gray700;
+  static const Color textDark = black;
+  static const Color textLight = white;
+  static const Color textGrayLight = gray500;
+  static const Color textGrayDark = gray700;
 
-  // --- Button Colors ---
-  static const Color buttonPrimary = black;
-  static const Color buttonDanger = red;
-
-  // --- Field Form Colors ---
-  static const Color fieldFormBackground = gray100;
+  // --- Border Colors ---
+  static const Color borderLight = white;
+  static const Color borderDark = black;
+  static const Color borderColorGrayLight = gray100;
+  static const Color borderColorGrayMedium = gray500;
+  static const Color borderColorGrayDark = gray700;
 }
 
 class AppTypography {
