@@ -144,14 +144,12 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final TextInputType keyboardType;
-  final Color? backgroundColor;
 
   const CustomTextFormField({
     super.key,
     required this.hintText,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
-    this.backgroundColor,
   });
 
   @override
@@ -181,8 +179,11 @@ class CustomTextFormField extends StatelessWidget {
   InputDecoration _buildInputDecoration() {
     return InputDecoration(
       hintText: hintText,
+      hintStyle: AppTypography.bodyRegular.copyWith(
+        color: AppColors.textGrayLight,
+      ),
       filled: true,
-      fillColor: backgroundColor ?? AppColors.backgroundColorGrayLight,
+      fillColor: AppColors.backgroundColorGrayLight,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide.none,
