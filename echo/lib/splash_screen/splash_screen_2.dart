@@ -62,7 +62,12 @@ class SplashScreen2 extends StatelessWidget {
           },
         ),
         const SizedBox(height: 8),
-        const SecondaryButton(text: "Skip the Intro"),
+        SecondaryButton(
+          text: "Skip the Intro",
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/register');
+          },
+        ),
       ],
     );
   }

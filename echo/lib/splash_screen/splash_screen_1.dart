@@ -65,7 +65,7 @@ class SplashScreen1 extends StatelessWidget {
         SecondaryButton(
           text: "Skip the Intro",
           onPressed: () {
-            // Tambahkan logika untuk tombol Skip jika diperlukan
+            Navigator.pushReplacementNamed(context, '/register');
           },
         ),
       ],

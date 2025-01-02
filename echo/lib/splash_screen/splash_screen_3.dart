@@ -18,7 +18,7 @@ class SplashScreen3 extends StatelessWidget {
               const SizedBox(height: 40),
               _buildWelcomeText(),
               const SizedBox(height: 40),
-              _buildActionButtons(),
+              _buildActionButtons(context),
             ],
           ),
         ),
@@ -39,7 +39,7 @@ class SplashScreen3 extends StatelessWidget {
     return const Column(
       children: [
         Text(
-          "Let’s Start Shopping!",
+          "Let’s Start Shopping",
           style: AppTypography.heading1Bold,
         ),
         SizedBox(height: 4),
@@ -52,12 +52,22 @@ class SplashScreen3 extends StatelessWidget {
   }
 
   // --- Action Button ---
-  Widget _buildActionButtons() {
-    return const Column(
+  Widget _buildActionButtons(BuildContext context) {
+    return Column(
       children: [
-        PrimaryButton(text: "Continue"),
-        SizedBox(height: 8),
-        SecondaryButton(text: "Skip the Intro"),
+        PrimaryButton(
+          text: "Get Started!",
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/register');
+          },
+        ),
+        const SizedBox(height: 8),
+        SecondaryButton(
+          text: "Skip the Intro",
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/register');
+          },
+        ),
       ],
     );
   }
