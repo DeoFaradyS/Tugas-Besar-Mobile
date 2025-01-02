@@ -31,7 +31,7 @@ class PrimaryButton extends StatelessWidget {
   // Button Style
   ButtonStyle _buttonStyle() {
     return ElevatedButton.styleFrom(
-      backgroundColor: AppColors.buttonPrimary,
+      backgroundColor: AppColors.backgroundDark,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
@@ -45,7 +45,7 @@ class PrimaryButton extends StatelessWidget {
   // Text Style
   TextStyle _textStyle() {
     return AppTypography.bodyLargeSemibold.copyWith(
-      color: AppColors.primaryTextLight,
+      color: AppColors.textLight,
     );
   }
 }
@@ -65,29 +65,35 @@ class SecondaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: SizedBox(
-        height: 48,
-        child: OutlinedButton(
-          onPressed: onPressed,
-          style: OutlinedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0), // Set border radius
-            ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-              vertical: 0,
-            ), // Set padding
-          ),
-          child: Text(
-            text,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 16, // Set font size
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+      height: 48,
+      child: OutlinedButton(
+        style: _buttonStyle(),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: _textStyle(),
         ),
       ),
+    );
+  }
+
+  // Button Style
+  ButtonStyle _buttonStyle() {
+    return OutlinedButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+        vertical: 0,
+      ),
+    );
+  }
+
+  // Text Style
+  TextStyle _textStyle() {
+    return AppTypography.bodyLargeSemibold.copyWith(
+      color: AppColors.textDark,
     );
   }
 }
@@ -106,17 +112,29 @@ class TertiaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      style: _buttonStyle(),
       onPressed: onPressed,
-      style: TextButton.styleFrom(
-        foregroundColor: Colors.grey,
-      ),
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 16, // Set font size
-          fontWeight: FontWeight.bold, // Set font weight
-        ),
+        style: _textStyle(),
       ),
+    );
+  }
+
+  // --- Button Style ---
+  ButtonStyle _buttonStyle() {
+    return TextButton.styleFrom(
+      foregroundColor: Colors.grey,
+    );
+  }
+
+  // Text Style
+  TextStyle _textStyle() {
+    return AppTypography.bodyMedium.copyWith(
+      color: AppColors.textDark,
+      decoration: TextDecoration.underline,
+      decorationColor: AppColors.borderDark,
+      decorationThickness: 1,
     );
   }
 }
@@ -126,22 +144,50 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final TextInputType keyboardType;
+  final Color? backgroundColor;
 
   const CustomTextFormField({
     super.key,
     required this.hintText,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
+    this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
+    return _buildTextField();
+  }
+
+  Widget _buildTextField() {
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: _buildTextFormField(),
+    );
+  }
+
+  Widget _buildTextFormField() {
     return TextFormField(
-      decoration: InputDecoration(
-        hintText: hintText,
-      ),
+      decoration: _buildInputDecoration(),
       obscureText: obscureText,
       keyboardType: keyboardType,
+      style: AppTypography.bodyRegular.copyWith(
+        color: AppColors.textGrayDark,
+      ),
+    );
+  }
+
+  InputDecoration _buildInputDecoration() {
+    return InputDecoration(
+      hintText: hintText,
+      filled: true,
+      fillColor: backgroundColor ?? AppColors.backgroundColorGrayLight,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide.none,
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
     );
   }
 }
