@@ -16,12 +16,17 @@ class AppColors {
   static const Color secondaryBackground = white;
 
   // --- Text Colors ---
-  static const Color primaryText = black;
+  static const Color primaryTextDark = black;
+  static const Color primaryTextLight = white;
   static const Color secondaryText = gray500;
+  static const Color tertiaryText = gray700;
 
   // --- Button Colors ---
   static const Color buttonPrimary = black;
   static const Color buttonDanger = red;
+
+  // --- Field Form Colors ---
+  static const Color fieldFormBackground = gray100;
 }
 
 class AppTypography {
