@@ -21,10 +21,24 @@ class EchoApi {
     }
   }
 
-  Future postData(String email, String password) async {
+  Future<bool> postData(String email, String password) async {
     try {
-      final response = await http.post(Uri.parse('$baseUrl/users'),
-          body: {"email": email, "password": password});
+      // Validasi email harus menggunakan domain @gmail.com
+      if (!email.endsWith('@gmail.com')) {
+        throw Exception("Email must use @gmail.com domain.");
+      }
+
+      // Validasi panjang password minimal 8 karakter
+      if (password.length < 8) {
+        throw Exception("Password must be at least 8 characters long.");
+      }
+
+      // Kirim data ke server jika validasi lolos
+      final response = await http.post(
+        Uri.parse('$baseUrl/users'),
+        body: {"email": email, "password": password},
+      );
+
       if (response.statusCode == 201) {
         return true;
       } else {
@@ -33,6 +47,7 @@ class EchoApi {
     } catch (e) {
       // ignore: avoid_print
       print(e.toString());
+      return false;
     }
   }
 }
