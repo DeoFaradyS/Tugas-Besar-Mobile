@@ -30,6 +30,13 @@ class AppColors {
   static const Color borderColorGrayLight = gray100;
   static const Color borderColorGrayMedium = gray500;
   static const Color borderColorGrayDark = gray700;
+
+  // --- Icon Colors ---
+  static const Color iconLight = white;
+  static const Color iconDark = black; 
+  static const Color iconGrayLight = gray500;
+  static const Color iconGrayMedium = gray500;
+  static const Color iconGrayDark = gray700;
 }
 
 class AppTypography {
