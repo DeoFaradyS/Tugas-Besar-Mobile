@@ -1,3 +1,5 @@
+import 'package:echo/Services/userlist.dart';
+import 'package:echo/pages/add.dart';
 import 'package:echo/pages/login_page.dart';
 import 'package:echo/pages/register_page.dart';
 import 'package:echo/splash_screen/splash_screen_0.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
         '/splash_screen_3': (context) => const SplashScreen3(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
+        '/userlist': (context) => const MyUserList(),
+        '/adduser': (context) => const AddScreen(),
       },
     );
   }
