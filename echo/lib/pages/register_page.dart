@@ -84,14 +84,11 @@ class _RegisterPageState extends State<RegisterPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Email", style: AppTypography.bodyRegular),
+        const Text("Email"),
         const SizedBox(height: 8),
-        TextField(
+        CustomTextFormField(
           controller: _emailController,
-          decoration: const InputDecoration(
-            hintText: 'example@gmail.com',
-            border: OutlineInputBorder(),
-          ),
+          hintText: 'example@gmail.com',
         ),
       ],
     );
@@ -101,18 +98,12 @@ class _RegisterPageState extends State<RegisterPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Password",
-          style: AppTypography.bodyRegular.copyWith(color: AppColors.textDark),
-        ),
+        const Text("Password"),
         const SizedBox(height: 8),
-        TextField(
+        CustomTextFormField(
           controller: _passwordController,
           obscureText: true,
-          decoration: const InputDecoration(
-            hintText: '********',
-            border: OutlineInputBorder(),
-          ),
+          hintText: '********',
         ),
       ],
     );
@@ -142,7 +133,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
             if (response) {
               // Jika berhasil, navigasi ke halaman berikutnya
-              Navigator.of(context).popAndPushNamed('/userlist');
+              Navigator.of(context).popAndPushNamed('/profile');
             } else {
               // Jika gagal, tampilkan pesan kesalahan
               ScaffoldMessenger.of(context).showSnackBar(

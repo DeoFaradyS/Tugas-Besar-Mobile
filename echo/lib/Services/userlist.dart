@@ -21,7 +21,6 @@ class _MyUserListState extends State<MyUserList> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getData();
   }

@@ -16,13 +16,14 @@ class EchoApi {
         return user;
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
   }
 
   Future postData(String email, String password) async {
     try {
-      final response = await http.post(Uri.parse(baseUrl + '/users'),
+      final response = await http.post(Uri.parse('$baseUrl/users'),
           body: {"email": email, "password": password});
       if (response.statusCode == 201) {
         return true;
@@ -30,6 +31,7 @@ class EchoApi {
         return false;
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
   }

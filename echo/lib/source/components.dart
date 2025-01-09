@@ -141,15 +141,18 @@ class TertiaryButton extends StatelessWidget {
 
 // --- Text Field Form ---
 class CustomTextFormField extends StatelessWidget {
+
   final String hintText;
   final bool obscureText;
   final TextInputType keyboardType;
+  final TextEditingController? controller; // Menambahkan kontroler
 
   const CustomTextFormField({
     super.key,
     required this.hintText,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
+    this.controller, // Menambahkan parameter kontroler
   });
 
   @override
@@ -167,6 +170,7 @@ class CustomTextFormField extends StatelessWidget {
 
   Widget _buildTextFormField() {
     return TextFormField(
+      controller: controller, // Menghubungkan kontroler dengan TextFormField
       decoration: _buildInputDecoration(),
       obscureText: obscureText,
       keyboardType: keyboardType,
@@ -189,6 +193,20 @@ class CustomTextFormField extends StatelessWidget {
         borderSide: BorderSide.none,
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+    );
+  }
+}
+
+class BackButton extends StatelessWidget {
+  const BackButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
     );
   }
 }

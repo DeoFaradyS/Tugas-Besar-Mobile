@@ -16,32 +16,31 @@ class _AddScreenState extends State<AddScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Tambah email'),
+          title: const Text('Tambah email'),
         ),
-        body: Container(
-          child: Column(
-            children: [
-              TextField(
-                controller: _emailController,
-                decoration: InputDecoration(hintText: 'Masukan Email'),
-              ),
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(hintText: 'Masukan Password'),
-              ),
-              ElevatedButton(
-                  onPressed: () async {
-                    bool response = await echoApi.postData(
-                        _emailController.text, _passwordController.text);
-                    if (response) {
-                      Navigator.of(context).popAndPushNamed('/userlist');
-                    } else {
-                      print('Simpan Data Gagal');
-                    }
-                  },
-                  child: Text('Simpan'))
-            ],
-          ),
+        body: Column(
+          children: [
+            TextField(
+              controller: _emailController,
+              decoration: const InputDecoration(hintText: 'Masukan Email'),
+            ),
+            TextField(
+              controller: _passwordController,
+              decoration: const InputDecoration(hintText: 'Masukan Password'),
+            ),
+            ElevatedButton(
+                onPressed: () async {
+                  bool response = await echoApi.postData(
+                      _emailController.text, _passwordController.text);
+                  if (response) {
+                    Navigator.of(context).popAndPushNamed('/userlist');
+                  } else {
+                    // ignore: avoid_print
+                    print('Simpan Data Gagal');
+                  }
+                },
+                child: const Text('Simpan'))
+          ],
         ));
   }
 }
