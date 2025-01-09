@@ -185,7 +185,7 @@ class _RegisterPageState extends State<RegisterPage> {
           text: "Login Now",
           onPressed: () {
             // Navigasi ke halaman login jika sudah punya akun
-            Navigator.pushReplacementNamed(context, '/login');
+            Navigator.pushReplacementNamed(context, '/profile');
           },
         ),
       ],

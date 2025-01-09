@@ -141,7 +141,6 @@ class TertiaryButton extends StatelessWidget {
 
 // --- Text Field Form ---
 class CustomTextFormField extends StatelessWidget {
-
   final String hintText;
   final bool obscureText;
   final TextInputType keyboardType;
