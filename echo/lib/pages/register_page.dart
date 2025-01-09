@@ -1,10 +1,8 @@
-import 'package:echo/DB/echo_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:echo/source/styles.dart';
 import 'package:echo/source/components.dart';
-import 'package:echo/controllers/register_controller.dart'; // Import controller
+import 'package:echo/controllers/register_controller.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -14,8 +12,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final RegisterController _controller =
-      RegisterController(); // Instance dari controller
+  final RegisterController _controller = RegisterController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,39 +70,38 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _buildForm() {
     return Column(
       children: [
-        _buildEmailField(),
-        const SizedBox(height: 16),
-        _buildPasswordField(),
-      ],
-    );
-  }
-
-  Widget _buildEmailField() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text("Email"),
-        const SizedBox(height: 8),
-        CustomTextFormField(
-          controller: _controller
-              .emailController, // Menggunakan controller dari RegisterController
+        _buildInputField(
+          label: "Email",
+          controller: _controller.emailController,
           hintText: 'example@gmail.com',
+        ),
+        const SizedBox(height: 16),
+        _buildInputField(
+          label: "Password",
+          controller: _controller.passwordController,
+          hintText: '********',
+          obscureText: true,
         ),
       ],
     );
   }
 
-  Widget _buildPasswordField() {
+  // --- Input Field Builder ---
+  Widget _buildInputField({
+    required String label,
+    required TextEditingController controller,
+    required String hintText,
+    bool obscureText = false,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Password"),
+        Text(label),
         const SizedBox(height: 8),
         CustomTextFormField(
-          controller: _controller
-              .passwordController, // Menggunakan controller dari RegisterController
-          obscureText: true,
-          hintText: '********',
+          controller: controller,
+          hintText: hintText,
+          obscureText: obscureText,
         ),
       ],
     );
@@ -117,63 +113,62 @@ class _RegisterPageState extends State<RegisterPage> {
       children: [
         PrimaryButton(
           text: "Register",
-          onPressed: () async {
-            final email = _controller.emailController.text.trim();
-            final password = _controller.passwordController.text.trim();
-
-            // Validasi email
-            if (email.isEmpty || password.isEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Please fill in all fields."),
-                ),
-              );
-              return; // Early return jika ada field yang kosong
-            }
-
-            // Validasi format email
-            if (!email.endsWith('@gmail.com')) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Email must use @gmail.com domain."),
-                ),
-              );
-              return;
-            }
-
-            // Validasi panjang password
-            if (password.length < 8) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Password must be at least 8 characters long."),
-                ),
-              );
-              return;
-            }
-
-            // Registrasi dengan controller
-            bool response = await _controller.register(email, password);
-
-            if (response) {
-              // Jika berhasil, navigasi ke halaman berikutnya
-              Navigator.of(context).popAndPushNamed('/profile');
-            } else {
-              // Jika gagal, tampilkan pesan kesalahan
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Registration failed. Please try again."),
-                ),
-              );
-            }
-          },
+          onPressed: () => _handleRegister(context),
         ),
         const SizedBox(height: 24),
-        _buildRegisterText(context),
+        _buildLoginText(context),
       ],
     );
   }
 
-  Widget _buildRegisterText(BuildContext context) {
+  // --- Handle Register ---
+  Future<void> _handleRegister(BuildContext context) async {
+    final email = _controller.emailController.text.trim();
+    final password = _controller.passwordController.text.trim();
+
+    if (!_validateInputs(context, email, password)) return;
+
+    try {
+      final isSuccess = await _controller.register(email, password);
+      if (isSuccess) {
+        Navigator.pushReplacementNamed(context, '/profile');
+      } else {
+        _showSnackBar(context, "Registration failed. Please try again.");
+      }
+    } catch (e) {
+      _showSnackBar(context, "An error occurred. Please try again.");
+    }
+  }
+
+  // --- Input Validation ---
+  bool _validateInputs(BuildContext context, String email, String password) {
+    if (email.isEmpty || password.isEmpty) {
+      _showSnackBar(context, "Please fill in all fields.");
+      return false;
+    }
+
+    if (!email.endsWith('@gmail.com')) {
+      _showSnackBar(context, "Email must use @gmail.com domain.");
+      return false;
+    }
+
+    if (password.length < 8) {
+      _showSnackBar(context, "Password must be at least 8 characters long.");
+      return false;
+    }
+
+    return true;
+  }
+
+  // --- Show SnackBar ---
+  void _showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+  }
+
+  // --- Login Text ---
+  Widget _buildLoginText(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -184,8 +179,7 @@ class _RegisterPageState extends State<RegisterPage> {
         TertiaryButton(
           text: "Login Now",
           onPressed: () {
-            // Navigasi ke halaman login jika sudah punya akun
-            Navigator.pushReplacementNamed(context, '/profile');
+            Navigator.pushReplacementNamed(context, '/login');
           },
         ),
       ],
