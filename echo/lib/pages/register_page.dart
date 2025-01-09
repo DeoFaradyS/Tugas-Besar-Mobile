@@ -1,11 +1,21 @@
+import 'package:echo/DB/echo_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:echo/source/styles.dart';
 import 'package:echo/source/components.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final EchoApi echoApi = EchoApi(); // Instance yang digunakan
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +27,7 @@ class RegisterPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start, // Semua elemen rata kiri
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildLogo(),
                 const SizedBox(height: 40),
@@ -72,14 +81,17 @@ class RegisterPage extends StatelessWidget {
   }
 
   Widget _buildEmailField() {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Email", style: AppTypography.bodyRegular),
-        SizedBox(height: 8),
-        CustomTextFormField(
-          hintText: 'example@gmail.com',
-          keyboardType: TextInputType.emailAddress,
+        const Text("Email", style: AppTypography.bodyRegular),
+        const SizedBox(height: 8),
+        TextField(
+          controller: _emailController,
+          decoration: const InputDecoration(
+            hintText: 'example@gmail.com',
+            border: OutlineInputBorder(),
+          ),
         ),
       ],
     );
@@ -94,10 +106,13 @@ class RegisterPage extends StatelessWidget {
           style: AppTypography.bodyRegular.copyWith(color: AppColors.textDark),
         ),
         const SizedBox(height: 8),
-        const CustomTextFormField(
-          hintText: '********',
+        TextField(
+          controller: _passwordController,
           obscureText: true,
-          keyboardType: TextInputType.emailAddress,
+          decoration: const InputDecoration(
+            hintText: '********',
+            border: OutlineInputBorder(),
+          ),
         ),
       ],
     );
@@ -107,7 +122,37 @@ class RegisterPage extends StatelessWidget {
   Widget _buildActionButtons(BuildContext context) {
     return Column(
       children: [
-        const PrimaryButton(text: "Register"),
+        PrimaryButton(
+          text: "Register",
+          onPressed: () async {
+            final email = _emailController.text.trim();
+            final password = _passwordController.text.trim();
+
+            if (email.isEmpty || password.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Please fill in all fields."),
+                ),
+              );
+              return; // Early return if fields are empty
+            }
+
+            // Kirim data ke repository dan tunggu responsenya
+            bool response = await echoApi.postData(email, password);
+
+            if (response) {
+              // Jika berhasil, navigasi ke halaman berikutnya
+              Navigator.of(context).popAndPushNamed('/userlist');
+            } else {
+              // Jika gagal, tampilkan pesan kesalahan
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Registration failed. Please try again."),
+                ),
+              );
+            }
+          },
+        ),
         const SizedBox(height: 24),
         _buildRegisterText(context),
       ],
@@ -125,6 +170,7 @@ class RegisterPage extends StatelessWidget {
         TertiaryButton(
           text: "Login Now",
           onPressed: () {
+            // Navigasi ke halaman login jika sudah punya akun
             Navigator.pushReplacementNamed(context, '/login');
           },
         ),
