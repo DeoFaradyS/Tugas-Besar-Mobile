@@ -156,7 +156,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
             if (response) {
               // Jika berhasil, navigasi ke halaman berikutnya
-              Navigator.of(context).popAndPushNamed('/profile');
+              Navigator.of(context).popAndPushNamed('/login');
             } else {
               // Jika gagal, tampilkan pesan kesalahan
               ScaffoldMessenger.of(context).showSnackBar(
@@ -185,7 +185,7 @@ class _RegisterPageState extends State<RegisterPage> {
           text: "Login Now",
           onPressed: () {
             // Navigasi ke halaman login jika sudah punya akun
-            Navigator.pushReplacementNamed(context, '/profile');
+            Navigator.pushReplacementNamed(context, '/login');
           },
         ),
       ],
