@@ -15,9 +15,9 @@ class UserListPage extends StatelessWidget {
         elevation: 0,
         title: const Row(
           children: [
-            SizedBox(width: 88),
+            SizedBox(width: 84),
             Text(
-              'Profile',
+              'User List',
               style: AppTypography.heading3Semibold,
             ),
           ],
