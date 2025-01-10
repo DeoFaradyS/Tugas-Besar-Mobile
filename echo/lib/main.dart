@@ -3,6 +3,7 @@ import 'package:echo/pages/home_page.dart';
 import 'package:echo/pages/login_page.dart';
 import 'package:echo/pages/profile_page.dart';
 import 'package:echo/pages/register_page.dart';
+import 'package:echo/pages/user_list_page.dart';
 import 'package:echo/splash_screen/splash_screen_0.dart';
 import 'package:echo/splash_screen/splash_screen_1.dart';
 import 'package:echo/splash_screen/splash_screen_2.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
 
         // --- Admin ---
-        '/userlist': (context) => const MyUserList(),
+        '/userlist': (context) => const UserListPage(),
       },
     );
   }
