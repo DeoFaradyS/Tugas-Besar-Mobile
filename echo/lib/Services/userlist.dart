@@ -1,57 +1,149 @@
+import 'package:flutter/material.dart';
 import 'package:echo/DB/echo_api.dart';
 import 'package:echo/Model/echo_api_model.dart';
-import 'package:echo/source/components.dart';
-import 'package:flutter/material.dart';
+import 'package:echo/source/styles.dart';
 
-class MyUserList extends StatefulWidget {
-  const MyUserList({super.key});
+class UserListPage extends StatefulWidget {
+  const UserListPage({super.key});
 
   @override
-  State<MyUserList> createState() => _MyUserListState();
+  State<UserListPage> createState() => _UserListPageState();
 }
 
-class _MyUserListState extends State<MyUserList> {
+class _UserListPageState extends State<UserListPage> {
   List<Users> listUsers = [];
   EchoApi echoApi = EchoApi();
-
-  getData() async {
-    listUsers = await echoApi.getData();
-    setState(() {});
-  }
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    getData();
+    _getData();
+  }
+
+  Future<void> _getData() async {
+    try {
+      listUsers = await echoApi.getData();
+    } catch (e) {
+      print("Error fetching data: $e");
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundLight,
+
+      // --- App Bar ---
       appBar: AppBar(
-        title: const Text('HTTP FLUTTER'),
+        backgroundColor: AppColors.backgroundLight,
+        elevation: 0,
+        title: const Row(
+          children: [
+            SizedBox(width: 84),
+            Text(
+              'User List',
+              style: AppTypography.heading3Semibold,
+            ),
+          ],
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: AppColors.textGrayDark),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
-      body: ListView.separated(
-          itemBuilder: (context, i) {
-            return ListTile(
-              title: Text(listUsers[i].email),
-            );
-          },
-          separatorBuilder: (context, i) {
-            return const Divider();
-          },
-          itemCount: listUsers.length),
+
+      // --- Body ---
+      body: SafeArea(
+        child: isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : listUsers.isEmpty
+                ? const Center(
+                    child: Text(
+                      "No users available",
+                      style: AppTypography.bodySemibold,
+                    ),
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+                    itemCount: listUsers.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          _buildUserCard("${index + 1}", listUsers[index].email),
+                          const SizedBox(height: 8),
+                        ],
+                      );
+                    },
+                  ),
+      ),
     );
   }
 
-  Widget back() {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      PrimaryButton(
-        text: "Kembali",
-        onPressed: () {
-          Navigator.pushReplacementNamed(context, '/register');
-        },
+  Widget _buildUserCard(String number, String email) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.backgroundColorGrayLight,
+        borderRadius: BorderRadius.circular(16),
       ),
-    ]);
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+      child: Row(
+        children: [
+          _buildNumber(number),
+          const SizedBox(width: 24),
+          _buildUserInformation(email),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNumber(String number) {
+    return Text(
+      number,
+      style: AppTypography.bodyLargeSemibold.copyWith(
+        color: AppColors.textGrayMedium,
+      ),
+    );
+  }
+
+  Widget _buildUserInformation(String email) {
+    return Row(
+      children: [
+        _buildProfilePicture(),
+        const SizedBox(width: 16),
+        _buildUserText(email),
+      ],
+    );
+  }
+
+  Widget _buildProfilePicture() {
+    return const CircleAvatar(
+      radius: 24,
+      backgroundImage: AssetImage('assets/images/profile.png'),
+    );
+  }
+
+  Widget _buildUserText(String email) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Email",
+          style: AppTypography.captionRegular.copyWith(
+            color: AppColors.textGrayDark,
+          ),
+        ),
+        Text(
+          email,
+          style: AppTypography.bodySemibold.copyWith(
+            color: AppColors.textGrayDark,
+          ),
+        ),
+      ],
+    );
   }
 }

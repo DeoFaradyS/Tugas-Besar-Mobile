@@ -102,7 +102,7 @@ class MenuSection extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         _buildActionButton("Log Out", "assets/icons/logout.svg", () {
-          Navigator.pushNamed(context, '/login');
+          Navigator.pushNamed(context, '/userlist');
         }),
       ],
     );
