@@ -131,7 +131,7 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       final isSuccess = await _controller.register(email, password);
       if (isSuccess) {
-        Navigator.pushReplacementNamed(context, '/profile');
+        Navigator.pushReplacementNamed(context, '/login');
       } else {
         _showSnackBar(context, "Registration failed. Please try again.");
       }
