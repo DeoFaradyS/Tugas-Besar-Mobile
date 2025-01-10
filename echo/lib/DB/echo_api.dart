@@ -50,4 +50,23 @@ class EchoApi {
       return false;
     }
   }
+
+  // Metode login yang memeriksa apakah email dan password cocok dengan data di API
+  Future<bool> login(String email, String password) async {
+    try {
+      // Ambil data pengguna dari API
+      List<Users> users = await getData();
+      // Cari pengguna yang cocok dengan email dan password
+      for (var user in users) {
+        if (user.email == email && user.password == password) {
+          return true; // Login berhasil
+        }
+      }
+      return false; // Login gagal jika tidak ada yang cocok
+    } catch (e) {
+      // ignore: avoid_print
+      print(e.toString());
+      return false; // Gagal jika ada error dalam mengambil data
+    }
+  }
 }
