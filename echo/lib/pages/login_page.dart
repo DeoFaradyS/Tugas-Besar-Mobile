@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
     if (isSuccess) {
       _showSnackBar(context, "Login successful!");
       // Pindah ke halaman berikutnya, misalnya HomePage
-      Navigator.pushReplacementNamed(context, '/userlist');
+      Navigator.pushReplacementNamed(context, '/profile');
     } else {
       _showSnackBar(context, "Invalid email or password.");
     }

@@ -24,7 +24,7 @@ class ProfilePage extends StatelessWidget {
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppColors.textGrayDark),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.pushNamed(context, '/home'),
         ),
         elevation: 0,
       ),

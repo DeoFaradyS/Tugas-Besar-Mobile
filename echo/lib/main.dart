@@ -1,4 +1,5 @@
 import 'package:echo/Services/userlist.dart';
+import 'package:echo/pages/home_page.dart';
 import 'package:echo/pages/login_page.dart';
 import 'package:echo/pages/profile_page.dart';
 import 'package:echo/pages/register_page.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/register': (context) => const RegisterPage(),
         '/profile': (context) => const ProfilePage(),
+        '/home': (context) => const HomePage(),
 
         // --- Admin ---
         '/userlist': (context) => const MyUserList(),
