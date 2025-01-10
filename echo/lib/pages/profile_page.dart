@@ -101,23 +101,25 @@ class MenuSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        _buildActionButton("Log Out", "assets/icons/logout.svg", () {}),
+        _buildActionButton("Log Out", "assets/icons/logout.svg", () {
+          Navigator.pushNamed(context, '/login');
+        }),
       ],
     );
   }
 
   // --- Action Button ---
-  Widget _buildActionButton(text, path, onPressed) {
+  Widget _buildActionButton(String label, String iconPath, VoidCallback onPressed) {
     return SizedBox(
       width: double.infinity,
       height: 56,
       child: ElevatedButton(
+        onPressed: onPressed,
         style: _buttonStyle(),
-        onPressed: () {},
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildLeadingIconText(text, path),
+            _buildLeadingIconText(label, iconPath),
             _buildChevronIcon(),
           ],
         ),
@@ -126,12 +128,12 @@ class MenuSection extends StatelessWidget {
   }
 
   // --- Leading Icon Text ---
-  Widget _buildLeadingIconText(text, path) {
+  Widget _buildLeadingIconText(label, iconPath) {
     return Row(
       children: [
-        _buildIconButton(path),
+        _buildIconButton(iconPath),
         const SizedBox(width: 16),
-        _buildLabelButton(text),
+        _buildLabelButton(label),
       ],
     );
   }
@@ -149,9 +151,9 @@ class MenuSection extends StatelessWidget {
   }
 
   // --- Label Button ---
-  Widget _buildLabelButton(text) {
+  Widget _buildLabelButton(label) {
     return Text(
-      text,
+      label,
       style: AppTypography.bodyMedium.copyWith(
         color: AppColors.textGrayDark,
       ),
