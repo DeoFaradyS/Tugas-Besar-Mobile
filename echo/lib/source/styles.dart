@@ -21,7 +21,8 @@ class AppColors {
   // --- Text Colors ---
   static const Color textDark = black;
   static const Color textLight = white;
-  static const Color textGrayLight = gray500;
+  static const Color textGrayLight = gray100;
+  static const Color textGrayMedium = gray500;
   static const Color textGrayDark = gray700;
 
   // --- Border Colors ---
